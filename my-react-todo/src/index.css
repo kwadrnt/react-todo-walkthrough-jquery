@@ -16,6 +16,7 @@ header, .todos {
 h2 {
   padding-bottom: .5em;
   margin-bottom: .5em;
+  text-align: center;
 }
 
 .incomplete h2{
