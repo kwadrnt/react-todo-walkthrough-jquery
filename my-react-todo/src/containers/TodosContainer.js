@@ -45,6 +45,21 @@ class TodosContainer extends Component {
     })
   }
 
+  updateTodo(newTodoBody, id) {
+    console.log('updating todo in TodosContainer')
+    // access id of todo to be updated (param)
+    // access new info for the todo (param)
+    // call TodoModel.update to make AJAX call
+    TodoModel.update(newTodoBody, id).then((res)=> {
+      let targetTodo = this.state.todos.find((item)=>{
+        return item._id === id;
+      })
+      // update this.state.todos based on response
+      targetTodo.body = res.body
+    })
+  }
+
+
   render(){
     return (
       <div className='todosContainer'>
@@ -52,6 +67,7 @@ class TodosContainer extends Component {
           createTodo={this.createTodo.bind(this)} />
         <TodoList
           todos={this.state.todos}
+          onUpdateTodo={this.updateTodo.bind(this)}
           onDeleteTodo={this.deleteTodo.bind(this)} />
       </div>
     )
